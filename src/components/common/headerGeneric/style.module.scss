@@ -14,9 +14,11 @@
     cursor: pointer;
 }
 .headerBtn{
-    border-color: $lightRed;
-    color: white;
-    background-color: transparent;
+    &:hover {
+        border-color: $lightRed;
+        color: $lightGray;
+        background-color: transparent;
+    }
 }
 
 @media (max-width: 575px) {
