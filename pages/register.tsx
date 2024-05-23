@@ -3,8 +3,52 @@ import style from '../styles/registerLogin.module.scss'
 import HeaderGeneric from '@/components/common/headerGeneric'
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap'
 import Footer from '@/components/common/footer'
+import { FormEvent, useState } from 'react'
+import authService from '@/services/authService'
+import { useRouter } from 'next/router'
+import ToasComponent from '@/components/common/toast'
 
 const Register = function () {
+    const router = useRouter()
+    const [toastIsOpen, setToastIsOpen] = useState(false)
+    const [toastMessage, setToastMessage] = useState('')
+    const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const firstName = formData.get('firstName')!.toString()
+        const lastName = formData.get('lastName')!.toString()
+        const phone = formData.get('phone')!.toString()
+        const birth = formData.get('birth')!.toString()
+        const email = formData.get('email')!.toString()
+        const password = formData.get('password')!.toString()
+        const confirmpassword = formData.get('confirmpassword')!.toString()
+        const params = { firstName, lastName, phone, birth, email, password}
+
+        if(password !== confirmpassword) {
+           setToastIsOpen(true)
+           setTimeout(() => {
+            setToastIsOpen(false)
+           }, 1000 * 3)
+           setToastMessage('Senha e confimação diferentes')
+           return
+        }
+
+        const {data, status} = await authService.register(params)
+
+        if(status === 201){
+            router.push('/login?registred=true')
+
+        }else{
+            setToastIsOpen(true)
+            setTimeout(() => {
+                setToastIsOpen(false)
+           }, 1000 * 3)
+           setToastMessage(data.message)
+           return
+        }
+    }
+
     return <>
         <Head>
             <title>Onebitflix - Registro</title>
@@ -15,7 +59,7 @@ const Register = function () {
             <HeaderGeneric logoUrl='/' btnUrl='/login' btnContent='Quero fazer login'/>
         <Container className='py-5'>
             <p className={style.formTitle}>Bem vindo(a) ao OneBitFlix!</p>
-            <Form className={style.form}>
+            <Form className={style.form} onSubmit={handleRegister}>
                 <p className='text-center'><strong>Faça a sua conta!</strong></p>
                 {/* name */}
                 <FormGroup>
@@ -49,13 +93,14 @@ const Register = function () {
                 </FormGroup>
                 {/* confirmpassword */}
                 <FormGroup>
-                    <Label for='password' className={style.label}>CONFIRME SUA SENHA</Label>
-                    <Input id='password' name='password' type='password' placeholder='Confirme a sua senha' required minLength={6} maxLength={20} className={style.input}/>
+                    <Label for='confirmpassword' className={style.label}>CONFIRME SUA SENHA</Label>
+                    <Input id='confirmpassword' name='confirmpassword' type='password' placeholder='Confirme a sua senha' required minLength={6} maxLength={20} className={style.input}/>
                 </FormGroup>
                 <Button type='submit' outline className={style.formBtn}>Cadastrar</Button>
             </Form>
         </Container>
         <Footer/>
+        <ToasComponent color='bg-danger' isOpen={toastIsOpen} message={toastMessage}/>
         </main>
     </>
 }
