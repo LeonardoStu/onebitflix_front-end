@@ -3,8 +3,17 @@ import style from '../styles/HomeNoAuth.module.scss'
 import HeaderNoAuth from "@/components/homeNoAuth/hearderNoAuth"
 import PresententionSection from "@/components/homeNoAuth/presentationSection"
 import CardsSection from "@/components/homeNoAuth/cardSection"
+import SlideSection from "@/components/homeNoAuth/slideSection"
+import { GetStaticProps } from "next"
+import courseServices, { CourseType } from "@/services/courseService"
+import { ReactNode } from "react"
 
-export const homeNoAuth = function () {
+interface IndexPageProps {
+  chrildren?: ReactNode
+  course: CourseType[]
+}
+
+export const homeNoAuth = function ({ course }: IndexPageProps) {
   return<>
     <Head>
       <title>Onebitflix</title>
@@ -19,8 +28,19 @@ export const homeNoAuth = function () {
         <PresententionSection/>
       </div>
       <CardsSection/>
+      <SlideSection newestCourses={course}/> 
     </main>
   </>
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await courseServices.getNewestCourse()
+  return {
+    props: {
+      course: res.data
+    },
+    revalidate: 3600 * 24
+  }
 }
 
 export default homeNoAuth

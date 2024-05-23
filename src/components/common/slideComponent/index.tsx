@@ -11,7 +11,7 @@ const SlideComponent = function ({ course }: props) {
     return <>
         <div>
             <Splide options={{
-                type: "loop",
+                type: 'loop',
                 perPage: 4,
                 perMove: 1,
                 pagination: false
