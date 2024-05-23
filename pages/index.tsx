@@ -1,5 +1,6 @@
 import Head from "next/head"
 import style from '../styles/HomeNoAuth.module.scss'
+import HeaderNoAuth from "@/components/homeNoAuth/hearderNoAuth"
 
 export const homeNoAuth = function () {
   return<>
@@ -10,7 +11,9 @@ export const homeNoAuth = function () {
       <meta name="description" content="Tenha acesso aos melhores conteúdos sobre programação de uma forma simples e fácil."></meta>
     </Head>
 
-    <main></main>
+    <main>
+      <HeaderNoAuth/>
+    </main>
   </>
 }
 
