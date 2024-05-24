@@ -17,7 +17,7 @@ const HeaderGeneric = function ({ logoUrl, btnUrl, btnContent}: props) {
                     <img src="/logoOnebitflix.svg" alt="logoRegister" className={style.headerLogo} />
                 </Link>
                 <Link href={btnUrl}>
-                    <Button outline color='light' className={style.headerBtn}>{btnContent  }</Button>
+                    <Button outline color='light' className={style.headerBtn}>{btnContent}</Button>
                 </Link>
             </Container>
         </div>
