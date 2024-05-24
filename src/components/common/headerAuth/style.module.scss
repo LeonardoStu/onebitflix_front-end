@@ -1,0 +1,46 @@
+@import '../../../../styles/colors.module.scss';
+.imgLogoNav{
+     width: 160px;
+     cursor: pointer;
+}
+.searchImg{
+    width: 26px;
+    margin: 0px 26px;
+    cursor: pointer;
+}
+.nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 14px;
+}
+.userProfile{
+    font-weight: bold;
+    font-size: 22px;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0px 14px;
+}
+.input{
+    background-color: transparent;
+    color: white;
+    border-radius: $lightGray;
+    &:focus{
+        background-color: transparent;
+        color: white;
+        border-color: $mediumGray;
+        box-shadow: none;
+    }
+    &::placeholder{
+        color: white;
+    }
+}
