@@ -25,6 +25,21 @@ const courseServices = {
         })
 
         return res
+    },
+    getFeatureCourses: async() => {
+        const token = sessionStorage.getItem('onebitflix-token')
+
+        const res = await api.get('/courses/featured', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).catch((err) => {
+            console.log(err.response.data.message)
+
+            return err.response
+        })
+
+        return res
     }
 }
 
