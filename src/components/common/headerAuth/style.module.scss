@@ -44,3 +44,46 @@
         color: white;
     }
 }
+.modal{
+    position: absolute;
+    width: 150px;
+    height: 80px;
+    top: 85px;
+    right: 10%;
+    background-color: #303030;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 8px 6px 4px #0000007c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px 24px;
+}
+.overlayModal{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+.modalLink{
+    color: white;
+    font-weight: bold;
+    margin: 5px 0px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.4s;
+    &:hover{
+        color: $lightRed;
+    }
+}
+@media (max-width: 767px){
+    .nav{
+        justify-content: center;
+        gap: 20px;
+    }
+    .modal{
+        top: 140px;
+    }
+}
