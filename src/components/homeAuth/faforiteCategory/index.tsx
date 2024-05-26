@@ -10,7 +10,7 @@ const FavoriteCourse = function () {
     if (!data) return <p>Loading...</p>
 
     return<>
-        <p className={style.titleCategory}>Minha Lista</p>
+        <p className={style.titleCategory}>MINHA LISTA</p>
         {data.data.courses.length >= 1 ? (
             <SlideComponent course={data.data.course}/>
         ) : (
