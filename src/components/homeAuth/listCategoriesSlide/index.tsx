@@ -9,7 +9,7 @@ interface props {
 }
 
 const ListCategoriesSlides = function ({ categoryId, categoryName}: props) {
-    const { data, error } = useSWR(`/categoriesCourses/${categoryId}`, () => categoryService.getCourses(categoryId));
+    const { data, error } = useSWR(`/categories/${categoryId}`, () => categoryService.getCourses(categoryId));
     
     if (error) return error;
     if (!data) return <p>Loading...</p>;

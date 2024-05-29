@@ -3,7 +3,7 @@ import useSWR from "swr";
 import ListCategoriesSlides from "../listCategoriesSlide";
 
 const ListCategories = function () {
-    const { data, error } = useSWR("/listCategories", categoryService.getCategories);
+    const { data, error } = useSWR("/categories", categoryService.getCategories);
     
     if (error) return error;
     if (!data) return <p>Loading...</p>;
