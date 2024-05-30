@@ -4,12 +4,13 @@ import courseServices, { CourseType } from '@/services/courseService'
 import HeaderAuth from '@/components/common/headerAuth'
 import { Button, Container } from 'reactstrap'
 import Link from 'next/link'
+import PageSpinner from '@/components/common/spinner'
 
 const FeaturesSection = function (){
     const { data, error } = useSWR('/featured', courseServices.getFeatureCourses)
 
     if(error) return error
-    if(!data) return<><p>Loanding...</p></>
+    if(!data) return <PageSpinner/>
 
     return <>
         {data.data?.map((course: CourseType) =>(
