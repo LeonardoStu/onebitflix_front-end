@@ -20,8 +20,7 @@ const profileServices = {
     userUpdate: async (params: UserParams) => {
         const token = sessionStorage.getItem("onebitflix-token");
     
-      const res = await api
-      .put("/users/current", params, {
+      const res = await api.put("/users/current", params, {
       headers: {
           Authorization: `Bearer ${token}`,
       },

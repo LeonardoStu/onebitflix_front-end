@@ -3,16 +3,21 @@ import style from "../../../../styles/profile.module.scss"
 import { FormEvent, useEffect, useState } from "react"
 import profileServices from "@/services/profileService"
 import ToasComponent from "@/components/common/toast"
+import { useRouter } from "next/router"
 
 const UserForm = function () {
+    const router = useRouter()
     const [color, setColor] = useState("");
     const [toastIsOpen, setToastIsOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [initalEmail, setInitialEmail] = useState('')
     const [ firstName, setFirstName] = useState('')
     const [ lastName, setlastName] = useState('')
     const [ phone, setPhone] = useState('')
     const [ email, setEmail] = useState('')
     const [ created_at, setCreated_at] = useState('')
+    const date = new Date(created_at)
+    const month = date.toLocaleDateString('default', { month: 'long'})
 
     useEffect(() => {
         profileServices.fetchCurrent().then((user) => {
@@ -20,7 +25,8 @@ const UserForm = function () {
             setlastName(user.lastName)
             setPhone(user.phone)
             setEmail(user.email)
-            setCreated_at(user.created_at)
+            setInitialEmail(user.email)
+            setCreated_at(user.createdAt)
         })
     }, [])
 
@@ -40,6 +46,10 @@ const UserForm = function () {
             setErrorMessage("Informações alteradas com sucesso!");
             setColor("bg-success");
             setTimeout(() => setToastIsOpen(false), 1000 * 3);
+            if(email != initalEmail) {
+                sessionStorage.clear()
+                router.push('/')
+            }
         } else {
             setToastIsOpen(true);
             setErrorMessage("Você não pode mudar para esse email!");
@@ -60,7 +70,7 @@ const UserForm = function () {
             <div className={style.memberTime}>
                 <img className={style.memberTimeImg} src="/profile/iconUserAccount.svg" alt="iconProfile" />
                 <p className={style.memberTimeText}>
-                    Membro des <br /> 20 de Abril de 2020
+                    Membro des <br /> {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
                 </p>
             </div>
             <hr />
