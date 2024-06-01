@@ -7,10 +7,9 @@
 main {
   background-color: #151515;
   min-height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
   color: white;
+  display: flex;
+  flex-direction: column;
 
   p {
     margin: 0;
