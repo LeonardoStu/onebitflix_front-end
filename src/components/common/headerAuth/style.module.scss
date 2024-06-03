@@ -82,6 +82,41 @@
     text-decoration: none;
 }
 
+@media (max-width: 3600px){
+    .modal{
+        right: 32%;
+    }
+}
+@media (max-width: 3000px){
+    .modal{
+        right: 28%;
+    }
+}
+@media (max-width: 2560px){
+    .modal{
+        right: 25%;
+    }
+}
+@media (max-width: 2500px){
+    .modal{
+        right: 25%;
+    }
+}
+@media (max-width: 2200px){
+    .modal{
+        right: 22%;
+    }
+}
+@media (max-width: 1900px){
+    .modal{
+        right: 16%;
+    }
+}
+@media (max-width: 1600px){
+    .modal{
+        right: 10%;
+    }
+}
 @media (max-width: 767px){
     .nav{
         justify-content: center;

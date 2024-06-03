@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import courseServices, { CourseType } from "@/services/courseService";
 import { Button, Container } from "reactstrap";
+import PageSpinner from "@/components/common/spinner";
 
 const CoursePage = function () {
     const [course, setCourse] = useState<CourseType>() 
@@ -52,6 +53,8 @@ const CoursePage = function () {
         setFavorited(true);
         }
     };
+
+    if(course === undefined) return <PageSpinner/>
 
   return (
     <>
