@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import courseServices, { CourseType } from "@/services/courseService";
 import { Button, Container } from "reactstrap";
 import PageSpinner from "@/components/common/spinner";
+import EpisodeList from "@/components/episodeList";
 
 const CoursePage = function () {
     const [course, setCourse] = useState<CourseType>() 
@@ -77,6 +78,15 @@ const CoursePage = function () {
                     {like === false ? (<img src="/course/iconLike.svg" alt="Like" className={style.interactionImg} onClick={handleLikeCourse} />) : (<img src="/course/iconLiked.svg" alt="Like" className={style.interactionImg} onClick={handleLikeCourse} />)}
                     {favorited === false ? (<img src="/course/iconAddFav.svg" alt="Like" className={style.interactionImg} onClick={handleFavCourse}/>) : (<img src="/course/iconFavorited.svg" alt="Like" className={style.interactionImg} onClick={handleFavCourse}/>)}
                 </div>
+            </Container>
+            <Container className={style.episodeInfo}>
+              <p className={style.episodeDivision}>EPISÓDIOS</p>
+              <p className={style.episodeLenght}>
+                {course?.episodes?.length} episódios
+              </p>
+              {course?.episodes?.map((episode) => (
+                <EpisodeList key={episode.id} episode={episode}/>
+              ))}
             </Container>
         </main>
     </>
