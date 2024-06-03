@@ -13,7 +13,7 @@ const FavoriteCourse = function () {
     return<>
         <p className={style.titleCategory}>MINHA LISTA</p>
         {data.data.courses.length >= 1 ? (
-            <SlideComponent course={data.data.course}/>
+            <SlideComponent course={data.data.courses}/>
         ) : (
             <p className='text-center pt-3 h5'>
                 <strong>Você não tem nenhum curso na lista!</strong>

@@ -8,7 +8,7 @@ interface props {
 
 const SlideCard = function ({ course }: props) {
     return <>
-        <Link href={`/courses/${course.id}`}>
+        <Link href={`/courses/${course.id}`} className={style.link}>
             <div className={style.slide}>
                 <img src={`${process.env.NEXT_PUBLIC_BASEURL}/${course.thumbnailUrl}`} alt={course.name} className={style.slideImg}/>
                 <p className={style.slideTitle}>{course.name}</p>

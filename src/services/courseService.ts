@@ -20,7 +20,6 @@ export type CourseType = {
 const courseServices = {
     getNewestCourse: async () => {
         const res = await api.get('/courses/newest').catch((err) => {
-            console.log(err.response.data.message)
             return err.response
         })
 
@@ -34,8 +33,6 @@ const courseServices = {
                 Authorization: `Bearer ${token}`
             }
         }).catch((err) => {
-            console.log(err.response.data.message)
-
             return err.response
         })
 
@@ -55,7 +52,7 @@ const courseServices = {
     },
     removeFav: async(courseId: number | string) => {
         const token = sessionStorage.getItem('onebitflix-token')
-        const res = await api.delete('/favorites', {
+        const res = await api.delete(`/favorites/${courseId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },

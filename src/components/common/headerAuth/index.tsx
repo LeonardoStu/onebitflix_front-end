@@ -62,7 +62,7 @@ const HeaderAuth = function () {
                 <p className={style.userProfile} onClick={handleOpenModal}>{initial}</p>
             </div>
             <Modal isOpen={OpenModal} onRequestClose={handleCloseModal} shouldCloseOnEsc={true} className={style.modal} overlayClassName={style.overlayModal}>
-                <Link href='/profile'>
+                <Link href='/profile' className={style.link}>
                     <p className={style.modalLink}>Meus dados</p>
                 </Link>
                 <p className={style.modalLink} onClick={handleLogout}>Sair</p>

@@ -11,7 +11,7 @@ const PresententionSection = function () {
                     <p className={styles.title}> Tenha acesso aos melhores <br /> Totoriais de Programação </p>
                     <p className={styles.description}> Estude de onde estiver, a qualquer momento,e continue <br /> evoluindo como programador </p>
 
-                    <Link href='/register'>
+                    <Link href='/register' className={styles.link}>
                         <Button outline className={styles.btnCta}>
                             ACESSE AGORA <img src="/buttonPlay.svg" alt="buttonImg" className={styles.btnImg}/>
                         </Button>

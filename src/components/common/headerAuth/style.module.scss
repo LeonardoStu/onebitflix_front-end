@@ -78,6 +78,10 @@
         color: $lightRed;
     }
 }
+.link{
+    text-decoration: none;
+}
+
 @media (max-width: 767px){
     .nav{
         justify-content: center;
