@@ -7,6 +7,7 @@ import courseServices, { CourseType } from "@/services/courseService";
 import { Button, Container } from "reactstrap";
 import PageSpinner from "@/components/common/spinner";
 import EpisodeList from "@/components/episodeList";
+import Footer from "@/components/common/footer";
 
 const CoursePage = function () {
     const [course, setCourse] = useState<CourseType>() 
@@ -70,7 +71,7 @@ const CoursePage = function () {
             <Container className={style.courseInfo}>
                 <p className={style.courseTitle}>{course?.name}</p>
                 <p className={style.courseDescription}>{course?.synopsis}</p>
-                <Button className={style.courseBtn} outline>
+                <Button className={style.courseBtn} outline disabled={course?.episodes?.length === 0 ? true : false}>
                     ASSISTIR AGORA!
                     <img src="/buttonPlay.svg" alt="buttonImg" className={style.buttonImg}/>
                 </Button>
@@ -84,10 +85,17 @@ const CoursePage = function () {
               <p className={style.episodeLenght}>
                 {course?.episodes?.length} episódios
               </p>
-              {course?.episodes?.map((episode) => (
-                <EpisodeList key={episode.id} episode={episode}/>
-              ))}
+              {course?.episodes?.length === 0 ? (
+                <p>
+                  <strong> Não temos episódios ainda, volte outra hora! &#x1F606;&#x1F918;</strong>
+                </p>
+              ) : (
+                course?.episodes?.map((episode) => (
+                  <EpisodeList key={episode.id} episode={episode} />
+                ))              
+              )} 
             </Container>
+            <Footer/>
         </main>
     </>
   );
