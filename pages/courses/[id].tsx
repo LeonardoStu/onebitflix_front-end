@@ -10,11 +10,12 @@ import EpisodeList from "@/components/episodeList";
 import Footer from "@/components/common/footer";
 
 const CoursePage = function () {
+    const router = useRouter()
+    const { id } = router.query
     const [course, setCourse] = useState<CourseType>() 
     const [like, setLike] = useState(false)
     const [favorited, setFavorited] = useState(false)
-    const router = useRouter()
-    const { id } = router.query
+    const [loading, setLoading] = useState(true);
 
     const getCourse = async function () {
         if (typeof id !== "string") return;
@@ -55,6 +56,18 @@ const CoursePage = function () {
         setFavorited(true);
         }
     };
+
+    useEffect(() => {
+        if (!sessionStorage.getItem("onebitflix-token")) {
+          router.push("/login");
+        } else {
+          setLoading(false);
+        }
+    }, []);
+
+    if (loading) {
+        return <PageSpinner />;
+    }
 
     if(course === undefined) return <PageSpinner/>
 
