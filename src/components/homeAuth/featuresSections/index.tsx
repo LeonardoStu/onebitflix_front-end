@@ -25,7 +25,7 @@ const FeaturesSection = function (){
                 <Container className='pt-4'>
                     <p className={style.title}>{course.name}</p>
                     <p className={style.description}>{course.synopsis}</p>
-                    <Link href={`/course/${course.id}`}>
+                    <Link href={`/courses/${course.id}`}>
                         <Button outline color='light' className={style.button}>  
                             ACESSE AGORA!
                             <img src="/buttonPlay.svg" alt="buttonImg" className={style.buttonImg}/>
