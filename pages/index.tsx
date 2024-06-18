@@ -16,7 +16,7 @@ interface IndexPageProps {
   course: CourseType[]
 }
 
-export const homeNoAuth = function ({ course }: IndexPageProps) {
+export const HomeNoAuth = function ({ course }: IndexPageProps) {
 
   useEffect(()=> {
     AOS.init()
@@ -56,4 +56,4 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-export default homeNoAuth
+export default HomeNoAuth

@@ -7,6 +7,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import authService from '@/services/authService'
 import { useRouter } from 'next/router'
 import ToasComponent from '@/components/common/toast'
+import Script from 'next/script'
 
 const Register = function () {
     const router = useRouter()
@@ -60,9 +61,9 @@ const Register = function () {
         <Head>
             <title>Onebitflix - Registro</title>
             <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
-            <script src="https://jsuites.net/v4/jsuites.js"></script>
         </Head>
         <main className={style.main}>
+        <Script src="https://jsuites.net/v4/jsuites.js" strategy="afterInteractive" />
             <HeaderGeneric logoUrl='/' btnUrl='/login' btnContent='Quero fazer login'/>
         <Container className='py-5'>
             <p className={style.formTitle}>Bem vindo(a) ao OneBitFlix!</p>
