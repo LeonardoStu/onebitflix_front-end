@@ -10,35 +10,32 @@ import Footer from "@/components/common/footer";
 import PageSpinner from "@/components/common/spinner";
 
 const Search = function () {
-    const router = useRouter()
-    const searchName: any = router.query.name
-    const [searchResult, setSearchResult] = useState<CourseType[]>([])
-    const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const searchName: any = router.query.name;
+  const [searchResult, setSearchResult] = useState<CourseType[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        if (!sessionStorage.getItem("onebitflix-token")) {
-          router.push("/login");
-        } else {
-          setLoading(false);
-        }
-    }, []);
-
-    if (loading) {
-        return <PageSpinner />;
+  useEffect(() => {
+    if (!sessionStorage.getItem("onebitflix-token")) {
+      router.push("/login");
+    } else {
+      setLoading(false);
     }
+  }, [router]);
 
-    const searchCourses = async function () {
-        if(searchName) {
-            const res = await courseServices.getSearch(searchName)
-            
-            setSearchResult(res.data.courses)
-          }
-        }
-        
-    
-    useEffect(() => {
-        searchCourses()
-    }, [searchName])
+  useEffect(() => {
+    const searchCourses = async () => {
+      if (searchName) {
+        const res = await courseServices.getSearch(searchName);
+        setSearchResult(res.data.courses);
+      }
+    };
+    searchCourses();
+  }, [searchName]);
+
+  if (loading) {
+    return <PageSpinner />;
+  }
 
   return (
     <>
@@ -52,7 +49,7 @@ const Search = function () {
         </div>
         {searchResult.length >= 1 ? (
           <div className={style.searchResult}>
-              <Container className="d-flex flex-wrap justify-content-center gap-5 py-4">
+            <Container className="d-flex flex-wrap justify-content-center gap-5 py-4">
               {searchResult?.map((course) => (
                 <SearchCard key={course.id} course={course} />
               ))}
@@ -60,7 +57,7 @@ const Search = function () {
           </div>
         ) : (
           <div className={style.searchResult}>
-              <p className={style.noSearchText}>Nenhum resultado encontrado!</p>
+            <p className={style.noSearchText}>Nenhum resultado encontrado!</p>
           </div>
         )}
         <div className={style.headerFooterBg}>
